@@ -644,15 +644,15 @@ ALTER TABLE app_users DISABLE ROW LEVEL SECURITY;`}
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 flex overflow-x-hidden">
+    <div className="min-h-screen bg-zinc-50 flex">
       <Sidebar 
         activeTab={activeTab} 
         setActiveTab={setActiveTab} 
         onLogout={handleLogout} 
         user={user} 
       />
-      <main className="flex-1 p-4 lg:p-8 lg:ml-64 min-h-screen pt-20 lg:pt-8 w-full max-w-full overflow-x-hidden">
-        <div className="max-w-7xl mx-auto w-full">
+      <main className="flex-1 p-4 lg:p-8 lg:ml-64 min-h-screen pt-20 lg:pt-8">
+        <div className="max-w-7xl mx-auto">
           {renderContent()}
         </div>
       </main>

@@ -311,11 +311,11 @@ export default function OrderManagement({ orders, products, customers, onAddOrde
 
       {/* Create Order Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 bg-black/40 backdrop-blur-sm">
-          <div className="bg-white w-full sm:max-w-4xl h-full sm:h-[85vh] sm:rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in duration-200">
-            <div className="p-4 sm:p-6 border-b border-zinc-100 flex justify-between items-center bg-white sticky top-0 z-10">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+          <div className="bg-white w-full max-w-4xl h-[80vh] rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in duration-200">
+            <div className="p-6 border-b border-zinc-100 flex justify-between items-center">
               <h2 className="text-xl font-bold text-zinc-900">Tạo đơn hàng mới</h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-zinc-400 hover:text-zinc-600 p-2">
+              <button onClick={() => setIsModalOpen(false)} className="text-zinc-400 hover:text-zinc-600">
                 <Plus className="rotate-45" size={24} />
               </button>
             </div>
@@ -328,7 +328,7 @@ export default function OrderManagement({ orders, products, customers, onAddOrde
                     <label className="text-sm font-medium text-zinc-700">Khách hàng</label>
                     <button 
                       onClick={() => setIsNewCustomer(!isNewCustomer)}
-                      className="text-xs font-bold text-indigo-600 hover:text-indigo-700"
+                      className="text-xs font-bold text-emerald-600 hover:text-emerald-700"
                     >
                       {isNewCustomer ? 'Chọn từ danh sách' : '+ Thêm khách mới'}
                     </button>
@@ -338,26 +338,26 @@ export default function OrderManagement({ orders, products, customers, onAddOrde
                     <select 
                       value={selectedCustomerId}
                       onChange={(e) => setSelectedCustomerId(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all"
+                      className="w-full px-4 py-2 rounded-xl border border-zinc-200 outline-none focus:ring-2 focus:ring-emerald-500"
                     >
                       <option value="">-- Chọn khách hàng --</option>
                       {customers.map(c => <option key={c.id} value={c.id}>{c.name} - {c.phone}</option>)}
                     </select>
                   ) : (
-                    <div className="space-y-3 p-4 bg-indigo-50/50 rounded-xl border border-indigo-100">
+                    <div className="space-y-3 p-4 bg-zinc-50 rounded-xl border border-emerald-100">
                       <input 
                         type="text"
                         placeholder="Tên khách hàng *"
                         value={newCustomerName}
                         onChange={(e) => setNewCustomerName(e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all"
+                        className="w-full px-4 py-2 rounded-lg border border-zinc-200 outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
                       />
                       <input 
                         type="text"
                         placeholder="Số điện thoại"
                         value={newCustomerPhone}
                         onChange={(e) => setNewCustomerPhone(e.target.value)}
-                        className="w-full px-4 py-2.5 rounded-lg border border-zinc-200 outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all"
+                        className="w-full px-4 py-2 rounded-lg border border-zinc-200 outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
                       />
                     </div>
                   )}
@@ -372,7 +372,7 @@ export default function OrderManagement({ orders, products, customers, onAddOrde
                       placeholder="Tên sản phẩm, danh mục..."
                       value={productSearch}
                       onChange={(e) => setProductSearch(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-zinc-200 outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 text-sm transition-all"
+                      className="w-full pl-10 pr-4 py-2 rounded-xl border border-zinc-200 outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
                     />
                   </div>
                 </div>
@@ -380,7 +380,7 @@ export default function OrderManagement({ orders, products, customers, onAddOrde
                 <h3 className="text-sm font-bold text-zinc-900 mb-4">Danh sách sản phẩm</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {filteredProductsForOrder.map(product => (
-                    <div key={product.id} className="p-4 border border-zinc-100 rounded-xl hover:border-indigo-200 hover:shadow-sm transition-all bg-white">
+                    <div key={product.id} className="p-4 border border-zinc-100 rounded-xl hover:border-emerald-200 transition-colors">
                       <p className="text-sm font-bold text-zinc-900">{product.name}</p>
                       <p className="text-xs text-zinc-500 mb-2">{formatCurrency(product.price)}</p>
                       <div className="flex items-center justify-between gap-2">
@@ -394,7 +394,7 @@ export default function OrderManagement({ orders, products, customers, onAddOrde
                         <button 
                           onClick={() => handleAddProductToOrder(product.id)}
                           disabled={product.stock === 0}
-                          className="flex-1 py-1.5 text-xs font-semibold bg-indigo-50 hover:bg-indigo-600 text-indigo-600 hover:text-white rounded-lg transition-all disabled:opacity-50"
+                          className="flex-1 py-1.5 text-xs font-semibold bg-zinc-50 hover:bg-emerald-50 text-zinc-600 hover:text-emerald-600 rounded-lg transition-colors disabled:opacity-50"
                         >
                           {product.stock > 0 ? 'Thêm' : 'Hết hàng'}
                         </button>
@@ -405,12 +405,12 @@ export default function OrderManagement({ orders, products, customers, onAddOrde
               </div>
 
               {/* Order Summary */}
-              <div className="w-full lg:w-96 bg-zinc-50 p-4 lg:p-6 flex flex-col border-t lg:border-t-0">
+              <div className="w-full lg:w-80 bg-zinc-50 p-6 flex flex-col">
                 <h3 className="text-sm font-bold text-zinc-900 mb-4 flex items-center gap-2">
-                  <ShoppingCart size={18} className="text-indigo-600" />
+                  <ShoppingCart size={18} />
                   Chi tiết đơn hàng
                 </h3>
-                <div className="flex-1 overflow-y-auto space-y-4 mb-6 pr-1">
+                <div className="flex-1 overflow-y-auto space-y-4 mb-6">
                   {newOrderItems.map(item => {
                     const product = products.find(p => p.id === item.productId)!;
                     return (
@@ -422,7 +422,7 @@ export default function OrderManagement({ orders, products, customers, onAddOrde
                           </div>
                           <button 
                             onClick={() => handleRemoveFromOrder(item.productId)}
-                            className="text-zinc-400 hover:text-red-500 p-1"
+                            className="text-zinc-400 hover:text-red-500"
                           >
                             <XCircle size={16} />
                           </button>
@@ -431,39 +431,36 @@ export default function OrderManagement({ orders, products, customers, onAddOrde
                           <div className="flex items-center gap-2 bg-zinc-100 rounded-lg p-1">
                             <button 
                               onClick={() => handleUpdateQuantity(item.productId, -1)}
-                              className="w-7 h-7 flex items-center justify-center bg-white rounded-md shadow-sm text-zinc-600 hover:text-indigo-600 transition-colors"
+                              className="w-6 h-6 flex items-center justify-center bg-white rounded-md shadow-sm text-zinc-600 hover:text-emerald-600"
                             >
                               <Minus size={14} />
                             </button>
                             <span className="text-xs font-bold w-6 text-center">{item.quantity}</span>
                             <button 
                               onClick={() => handleUpdateQuantity(item.productId, 1)}
-                              className="w-7 h-7 flex items-center justify-center bg-white rounded-md shadow-sm text-zinc-600 hover:text-indigo-600 transition-colors"
+                              className="w-6 h-6 flex items-center justify-center bg-white rounded-md shadow-sm text-zinc-600 hover:text-emerald-600"
                             >
                               <Plus size={14} />
                             </button>
                           </div>
-                          <p className="text-sm font-bold text-indigo-600">{formatCurrency(item.quantity * product.price)}</p>
+                          <p className="text-sm font-bold text-emerald-600">{formatCurrency(item.quantity * product.price)}</p>
                         </div>
                       </div>
                     );
                   })}
                   {newOrderItems.length === 0 && (
-                    <div className="flex flex-col items-center justify-center py-12 text-zinc-400">
-                      <ShoppingCart size={40} className="mb-2 opacity-20" />
-                      <p className="text-sm">Chưa có sản phẩm nào</p>
-                    </div>
+                    <p className="text-center text-zinc-400 text-sm py-12">Chưa có sản phẩm nào</p>
                   )}
                 </div>
                 <div className="pt-4 border-t border-zinc-200">
                   <div className="flex justify-between items-center mb-4">
-                    <span className="text-sm text-zinc-500 font-medium">Tổng tiền:</span>
-                    <span className="text-2xl font-bold text-indigo-600">{formatCurrency(calculateTotal())}</span>
+                    <span className="text-sm text-zinc-500">Tổng tiền:</span>
+                    <span className="text-xl font-bold text-emerald-600">{formatCurrency(calculateTotal())}</span>
                   </div>
                   <button 
                     onClick={handleCreateOrder}
                     disabled={(isNewCustomer ? !newCustomerName : !selectedCustomerId) || newOrderItems.length === 0}
-                    className="w-full py-4 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-indigo-700 transition-all disabled:opacity-50 shadow-lg shadow-indigo-100 active:scale-[0.98]"
+                    className="w-full py-3 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-700 transition-colors disabled:opacity-50 shadow-lg shadow-emerald-100"
                   >
                     Thanh toán
                   </button>

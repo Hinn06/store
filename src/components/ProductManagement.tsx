@@ -248,7 +248,7 @@ export default function ProductManagement({ products, onAdd, onEdit, onDelete, o
                     name="name"
                     defaultValue={editingProduct?.name}
                     required
-                    className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all"
+                    className="w-full px-4 py-2 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-emerald-500 outline-none"
                   />
                 </div>
                 <div>
@@ -257,7 +257,7 @@ export default function ProductManagement({ products, onAdd, onEdit, onDelete, o
                     name="category"
                     defaultValue={editingProduct?.category}
                     required
-                    className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all"
+                    className="w-full px-4 py-2 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-emerald-500 outline-none"
                   />
                 </div>
                 <div>
@@ -267,7 +267,7 @@ export default function ProductManagement({ products, onAdd, onEdit, onDelete, o
                     type="number"
                     defaultValue={editingProduct?.costPrice}
                     required
-                    className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all"
+                    className="w-full px-4 py-2 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-emerald-500 outline-none"
                   />
                 </div>
                 <div>
@@ -277,7 +277,7 @@ export default function ProductManagement({ products, onAdd, onEdit, onDelete, o
                     type="number"
                     defaultValue={editingProduct?.price}
                     required
-                    className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all"
+                    className="w-full px-4 py-2 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-emerald-500 outline-none"
                   />
                 </div>
                 <div>
@@ -287,7 +287,7 @@ export default function ProductManagement({ products, onAdd, onEdit, onDelete, o
                     type="number"
                     defaultValue={editingProduct?.stock}
                     required
-                    className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all"
+                    className="w-full px-4 py-2 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-emerald-500 outline-none"
                   />
                 </div>
                 <div className="sm:col-span-2">
@@ -296,7 +296,7 @@ export default function ProductManagement({ products, onAdd, onEdit, onDelete, o
                     name="description"
                     defaultValue={editingProduct?.description}
                     rows={3}
-                    className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none resize-none transition-all"
+                    className="w-full px-4 py-2 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-emerald-500 outline-none resize-none"
                   />
                 </div>
               </div>
@@ -351,7 +351,7 @@ export default function ProductManagement({ products, onAdd, onEdit, onDelete, o
                   defaultValue={selectedProduct.stock}
                   required
                   autoFocus
-                  className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all"
+                  className="w-full px-4 py-2 rounded-xl border border-zinc-200 focus:ring-2 focus:ring-emerald-500 outline-none"
                 />
               </div>
               <div className="flex gap-4 pt-4">

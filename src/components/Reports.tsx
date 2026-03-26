@@ -150,23 +150,23 @@ export default function Reports({ orders, products }: ReportsProps) {
   };
 
   return (
-    <div className="space-y-6 sm:space-y-8 animate-in fade-in duration-500">
+    <div className="space-y-8">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div className="space-y-1">
-          <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">Báo cáo & Thống kê</h1>
-          <p className="text-sm sm:text-base text-zinc-500 font-medium">Phân tích hiệu quả kinh doanh của cửa hàng.</p>
+        <div>
+          <h1 className="text-2xl font-bold text-zinc-900">Báo cáo & Thống kê</h1>
+          <p className="text-sm text-zinc-500">Phân tích hiệu quả kinh doanh của cửa hàng.</p>
         </div>
-        <div className="flex flex-wrap gap-3">
+        <div className="flex gap-3">
           <button 
             onClick={() => setTimeRange(timeRange === 'month' ? 'year' : 'month')}
-            className="flex items-center gap-2 px-4 py-2.5 border border-zinc-200 rounded-2xl text-sm font-bold text-zinc-600 hover:bg-zinc-50 transition-all active:scale-95 shadow-sm"
+            className="flex items-center gap-2 px-4 py-2 border border-zinc-200 rounded-xl text-sm font-medium text-zinc-600 hover:bg-zinc-50 transition-colors"
           >
-            <Calendar size={18} className="text-indigo-600" />
+            <Calendar size={18} />
             {timeRange === 'month' ? 'Tháng này' : 'Năm nay'}
           </button>
           <button 
             onClick={handleExportCSV}
-            className="flex items-center gap-2 px-4 py-2.5 bg-zinc-900 text-white rounded-2xl text-sm font-bold hover:bg-zinc-800 transition-all active:scale-95 shadow-lg shadow-zinc-100"
+            className="flex items-center gap-2 px-4 py-2 bg-zinc-900 text-white rounded-xl text-sm font-medium hover:bg-zinc-800 transition-colors"
           >
             <Download size={18} />
             Xuất báo cáo
@@ -174,47 +174,34 @@ export default function Reports({ orders, products }: ReportsProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        <div className="bg-gradient-to-br from-indigo-600 to-indigo-700 p-6 rounded-3xl text-white shadow-xl shadow-indigo-100 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-8 -mt-8 blur-2xl group-hover:scale-150 transition-transform duration-700" />
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="bg-indigo-600 p-6 rounded-2xl text-white shadow-lg shadow-indigo-100">
           <div className="flex items-center gap-3 mb-4 opacity-80">
-            <div className="p-2 bg-white/20 rounded-lg">
-              <DollarSign size={20} />
-            </div>
-            <span className="text-xs font-bold uppercase tracking-wider">Tổng doanh thu</span>
+            <DollarSign size={20} />
+            <span className="text-sm font-medium">Tổng doanh thu</span>
           </div>
-          <p className="text-2xl sm:text-3xl font-black tracking-tight">{formatCurrency(totalRevenue)}</p>
+          <p className="text-2xl font-bold">{formatCurrency(totalRevenue)}</p>
         </div>
-        
-        <div className="bg-gradient-to-br from-violet-600 to-violet-700 p-6 rounded-3xl text-white shadow-xl shadow-violet-100 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-8 -mt-8 blur-2xl group-hover:scale-150 transition-transform duration-700" />
+        <div className="bg-violet-600 p-6 rounded-2xl text-white shadow-lg shadow-violet-100">
           <div className="flex items-center gap-3 mb-4 opacity-80">
-            <div className="p-2 bg-white/20 rounded-lg">
-              <TrendingUp size={20} />
-            </div>
-            <span className="text-xs font-bold uppercase tracking-wider">Tổng lợi nhuận</span>
+            <TrendingUp size={20} />
+            <span className="text-sm font-medium">Tổng lợi nhuận</span>
           </div>
-          <p className="text-2xl sm:text-3xl font-black tracking-tight">{formatCurrency(totalProfit)}</p>
+          <p className="text-2xl font-bold">{formatCurrency(totalProfit)}</p>
         </div>
-
-        <div className="bg-white p-6 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-md transition-all group">
-          <div className="flex items-center gap-3 mb-4 text-zinc-400 group-hover:text-rose-500 transition-colors">
-            <div className="p-2 bg-zinc-50 group-hover:bg-rose-50 rounded-lg transition-colors">
-              <ShoppingBag size={20} />
-            </div>
-            <span className="text-xs font-bold uppercase tracking-wider">Tổng đơn hàng</span>
+        <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
+          <div className="flex items-center gap-3 mb-4 text-zinc-500">
+            <ShoppingBag size={20} />
+            <span className="text-sm font-medium">Tổng đơn hàng</span>
           </div>
-          <p className="text-2xl sm:text-3xl font-black text-zinc-900 tracking-tight">{totalOrders}</p>
+          <p className="text-2xl font-bold text-zinc-900">{totalOrders}</p>
         </div>
-
-        <div className="bg-white p-6 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-md transition-all group">
-          <div className="flex items-center gap-3 mb-4 text-zinc-400 group-hover:text-blue-500 transition-colors">
-            <div className="p-2 bg-zinc-50 group-hover:bg-blue-50 rounded-lg transition-colors">
-              <Users size={20} />
-            </div>
-            <span className="text-xs font-bold uppercase tracking-wider">Giá trị TB đơn</span>
+        <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
+          <div className="flex items-center gap-3 mb-4 text-zinc-500">
+            <Users size={20} />
+            <span className="text-sm font-medium">Giá trị TB đơn</span>
           </div>
-          <p className="text-2xl sm:text-3xl font-black text-zinc-900 tracking-tight">{formatCurrency(avgOrderValue)}</p>
+          <p className="text-2xl font-bold text-zinc-900">{formatCurrency(avgOrderValue)}</p>
         </div>
       </div>
 

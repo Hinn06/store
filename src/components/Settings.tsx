@@ -250,25 +250,22 @@ export default function Settings({ user, onUpdateProfile, onChangePassword }: Se
       </div>
 
       {/* Account Info Card */}
-      <div className="bg-gradient-to-br from-indigo-600 via-indigo-700 to-violet-800 rounded-3xl p-6 sm:p-8 text-white shadow-xl shadow-indigo-100 relative overflow-hidden">
+      <div className="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-3xl p-8 text-white shadow-xl shadow-emerald-100 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-violet-400/20 rounded-full -ml-24 -mb-24 blur-2xl" />
-        
         <div className="relative z-10 flex flex-col md:flex-row items-center gap-6">
-          <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center border border-white/30 shadow-2xl shrink-0">
-            <User size={40} className="text-white sm:hidden" />
-            <User size={48} className="text-white hidden sm:block" />
+          <div className="w-24 h-24 bg-white/20 backdrop-blur-md rounded-3xl flex items-center justify-center border border-white/30 shadow-2xl">
+            <User size={48} className="text-white" />
           </div>
-          <div className="text-center md:text-left space-y-1 min-w-0">
-            <h3 className="text-xl sm:text-2xl font-bold truncate">{user.name}</h3>
-            <p className="text-indigo-100 font-medium opacity-90 text-sm sm:text-base">
+          <div className="text-center md:text-left space-y-1">
+            <h3 className="text-2xl font-bold">{user.name}</h3>
+            <p className="text-emerald-100 font-medium opacity-90">
               {user.role === 'admin' ? 'Quản trị viên hệ thống' : 'Nhân viên cửa hàng'}
             </p>
-            <div className="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3 mt-4">
-              <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-[10px] sm:text-xs font-semibold border border-white/20">
+            <div className="flex flex-wrap justify-center md:justify-start gap-3 mt-4">
+              <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-semibold border border-white/20">
                 ID: {user.id}
               </span>
-              <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-[10px] sm:text-xs font-semibold border border-white/20 truncate max-w-[150px] sm:max-w-none">
+              <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-semibold border border-white/20">
                 {user.username || user.phone || user.email}
               </span>
             </div>
