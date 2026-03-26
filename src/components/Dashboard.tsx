@@ -77,37 +77,37 @@ export default function Dashboard({ products, orders, customers }: DashboardProp
   const chartData = getChartData();
 
   const stats = [
-    { label: 'Tổng sản phẩm', value: products.length, icon: Package, color: 'from-cyan-400 to-blue-500', shadow: 'shadow-cyan-100', trend: '+12%', up: true },
-    { label: 'Tổng đơn hàng', value: orders.length, icon: ShoppingCart, color: 'from-violet-400 to-purple-600', shadow: 'shadow-violet-100', trend: '+5%', up: true },
-    { label: 'Doanh thu', value: formatCurrency(totalRevenue), icon: TrendingUp, color: 'from-rose-400 to-pink-600', shadow: 'shadow-rose-100', trend: '-2%', up: false },
-    { label: 'Lợi nhuận', value: formatCurrency(totalProfit), icon: TrendingUp, color: 'from-emerald-400 to-teal-600', shadow: 'shadow-emerald-100', trend: '+8%', up: true },
+    { label: 'Tổng sản phẩm', value: products.length, icon: Package, color: 'from-indigo-500 to-indigo-600', shadow: 'shadow-indigo-100', trend: '+12%', up: true },
+    { label: 'Tổng đơn hàng', value: orders.length, icon: ShoppingCart, color: 'from-violet-500 to-violet-600', shadow: 'shadow-violet-100', trend: '+5%', up: true },
+    { label: 'Doanh thu', value: formatCurrency(totalRevenue), icon: TrendingUp, color: 'from-rose-500 to-rose-600', shadow: 'shadow-rose-100', trend: '-2%', up: false },
+    { label: 'Lợi nhuận', value: formatCurrency(totalProfit), icon: TrendingUp, color: 'from-blue-500 to-blue-600', shadow: 'shadow-blue-100', trend: '+8%', up: true },
   ];
 
   return (
     <div className="space-y-6 sm:space-y-8 animate-in fade-in duration-500">
       <div className="flex flex-col gap-1 sm:gap-2">
-        <h1 className="text-xl sm:text-3xl font-black text-zinc-900 tracking-tight">Tổng quan</h1>
-        <p className="text-xs sm:text-base text-zinc-500 font-medium">Chào mừng bạn quay trở lại. Đây là tình hình kinh doanh hôm nay.</p>
+        <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">Tổng quan</h1>
+        <p className="text-sm sm:text-base text-zinc-500">Chào mừng bạn quay trở lại. Đây là tình hình kinh doanh hôm nay.</p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {stats.map((stat, idx) => (
-          <div key={idx} className="bg-white p-4 sm:p-6 rounded-2xl border border-zinc-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
-            <div className="flex justify-between items-start mb-3 sm:mb-4">
-              <div className={cn("p-2 sm:p-3 rounded-xl text-white bg-gradient-to-br shadow-lg", stat.color, stat.shadow)}>
-                <stat.icon className="w-5 h-5 sm:w-6 sm:h-6" />
+          <div key={idx} className="bg-white p-5 sm:p-6 rounded-2xl border border-zinc-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+            <div className="flex justify-between items-start mb-4">
+              <div className={cn("p-3 rounded-xl text-white bg-gradient-to-br shadow-lg", stat.color, stat.shadow)}>
+                <stat.icon size={24} />
               </div>
               <div className={cn(
-                "flex items-center gap-0.5 sm:gap-1 text-[8px] sm:text-xs font-black px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full",
+                "flex items-center gap-1 text-[10px] sm:text-xs font-bold px-2 py-1 rounded-full",
                 stat.up ? "bg-emerald-50 text-emerald-600" : "bg-red-50 text-red-600"
               )}>
-                {stat.up ? <ArrowUpRight size={10} className="sm:w-3.5 sm:h-3.5" /> : <ArrowDownRight size={10} className="sm:w-3.5 sm:h-3.5" />}
+                {stat.up ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
                 {stat.trend}
               </div>
             </div>
             <div>
-              <p className="text-[10px] sm:text-sm font-bold text-zinc-400 uppercase tracking-wider mb-0.5 sm:mb-1">{stat.label}</p>
-              <p className="text-sm sm:text-2xl font-black text-zinc-900 tracking-tight">{stat.value}</p>
+              <p className="text-xs sm:text-sm font-medium text-zinc-500 mb-1">{stat.label}</p>
+              <p className="text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">{stat.value}</p>
             </div>
           </div>
         ))}

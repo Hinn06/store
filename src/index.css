@@ -26,8 +26,8 @@
 }
 
 @layer base {
-  html, body {
-    @apply bg-zinc-50 text-zinc-900 overflow-x-hidden w-full;
+  body {
+    @apply bg-zinc-50 text-zinc-900;
   }
 }
 

@@ -261,16 +261,18 @@ export const supabaseService = {
 
     return { success: true };
   },
-  async updateUserProfile(userId: string, data: any) {
-    const { data: updatedData, error } = await getSupabase()
+  async updateUserProfile(userId: string, data: { name: string, phone?: string, email?: string }) {
+    const { error } = await getSupabase()
       .from('app_users')
-      .update(data)
-      .eq('id', userId)
-      .select()
-      .single();
+      .update({ 
+        name: data.name, 
+        phone: data.phone || null, 
+        email: data.email || null 
+      })
+      .eq('id', userId);
     
     if (error) throw error;
-    return updatedData as User;
+    return { success: true };
   },
   async changePassword(userId: string, oldPassword: string, newPassword: string) {
     // 1. Verify old password
