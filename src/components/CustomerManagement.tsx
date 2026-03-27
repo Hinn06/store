@@ -47,11 +47,11 @@ export default function CustomerManagement({ customers, orders, onAdd, onEdit, o
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 sm:space-y-8 animate-in fade-in duration-500">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-zinc-900">Quản lý khách hàng</h1>
-          <p className="text-sm text-zinc-500">Lưu trữ và quản lý thông tin khách hàng thân thiết.</p>
+        <div className="space-y-1">
+          <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight">Quản lý khách hàng</h1>
+          <p className="text-sm sm:text-base text-zinc-500 font-medium">Lưu trữ và quản lý thông tin khách hàng thân thiết.</p>
         </div>
         {permission === 'manage' && (
           <button 
@@ -59,7 +59,7 @@ export default function CustomerManagement({ customers, orders, onAdd, onEdit, o
               setEditingCustomer(null);
               setIsModalOpen(true);
             }}
-            className="flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2.5 rounded-xl font-medium transition-colors shadow-lg shadow-indigo-100"
+            className="flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-violet-700 hover:from-indigo-700 hover:to-violet-800 text-white px-5 py-3 rounded-2xl font-bold transition-all shadow-lg shadow-indigo-100 active:scale-95"
           >
             <Plus size={20} />
             Thêm khách hàng
@@ -67,70 +67,80 @@ export default function CustomerManagement({ customers, orders, onAdd, onEdit, o
         )}
       </div>
 
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={18} />
+      <div className="relative group">
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 group-focus-within:text-indigo-500 transition-colors" size={20} />
         <input 
           type="text"
           placeholder="Tìm kiếm theo tên, số điện thoại..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 bg-white border border-zinc-200 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition-all"
+          className="w-full pl-12 pr-4 py-3.5 bg-white border border-zinc-200 rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all shadow-sm"
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {filteredCustomers.map((customer) => (
-          <div key={customer.id} className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-md transition-all group">
-            <div className="flex justify-between items-start mb-4">
-              <div className="w-12 h-12 bg-zinc-100 rounded-full flex items-center justify-center text-zinc-600 font-bold text-lg">
-                {(customer.name || '?').charAt(0)}
-              </div>
-              <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                {permission === 'manage' && (
-                  <>
-                    <button 
-                      onClick={() => {
-                        setEditingCustomer(customer);
-                        setIsModalOpen(true);
-                      }}
-                      className="p-2 text-zinc-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
-                    >
-                      <Edit2 size={16} />
-                    </button>
-                    <button 
-                      onClick={() => onDelete(customer.id)}
-                      className="p-2 text-zinc-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </>
-                )}
-              </div>
-            </div>
+          <div key={customer.id} className="bg-white p-6 rounded-3xl border border-zinc-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-full -mr-16 -mt-16 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
-            <h3 className="text-lg font-bold text-zinc-900 mb-4">{customer.name}</h3>
-            
-            <div className="space-y-3 mb-6">
-              <div className="flex items-center gap-3 text-sm text-zinc-600">
-                <Phone size={16} className="text-zinc-400" />
-                {customer.phone}
+            <div className="relative z-10">
+              <div className="flex justify-between items-start mb-6">
+                <div className="w-14 h-14 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl flex items-center justify-center text-indigo-600 font-black text-xl shadow-inner">
+                  {(customer.name || '?').charAt(0)}
+                </div>
+                <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-4 group-hover:translate-x-0">
+                  {permission === 'manage' && (
+                    <>
+                      <button 
+                        onClick={() => {
+                          setEditingCustomer(customer);
+                          setIsModalOpen(true);
+                        }}
+                        className="p-2.5 text-zinc-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"
+                      >
+                        <Edit2 size={18} />
+                      </button>
+                      <button 
+                        onClick={() => onDelete(customer.id)}
+                        className="p-2.5 text-zinc-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all"
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    </>
+                  )}
+                </div>
               </div>
-              <div className="flex items-center gap-3 text-sm text-zinc-600">
-                <MapPin size={16} className="text-zinc-400" />
-                {customer.address}
+              
+              <h3 className="text-xl font-bold text-zinc-900 mb-4 group-hover:text-indigo-600 transition-colors">{customer.name}</h3>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center gap-3 text-sm text-zinc-600 font-medium">
+                  <div className="p-2 bg-zinc-50 rounded-lg group-hover:bg-indigo-50 transition-colors">
+                    <Phone size={16} className="text-zinc-400 group-hover:text-indigo-500" />
+                  </div>
+                  {customer.phone}
+                </div>
+                <div className="flex items-center gap-3 text-sm text-zinc-600 font-medium">
+                  <div className="p-2 bg-zinc-50 rounded-lg group-hover:bg-indigo-50 transition-colors">
+                    <MapPin size={16} className="text-zinc-400 group-hover:text-indigo-500" />
+                  </div>
+                  <span className="truncate">{customer.address}</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-zinc-600 font-medium">
+                  <div className="p-2 bg-zinc-50 rounded-lg group-hover:bg-indigo-50 transition-colors">
+                    <History size={16} className="text-zinc-400 group-hover:text-indigo-500" />
+                  </div>
+                  {getCustomerOrders(customer.id).length} đơn hàng đã mua
+                </div>
               </div>
-              <div className="flex items-center gap-3 text-sm text-zinc-600">
-                <History size={16} className="text-zinc-400" />
-                {getCustomerOrders(customer.id).length} đơn hàng đã mua
-              </div>
-            </div>
 
-            <button 
-              onClick={() => setSelectedCustomerForHistory(customer)}
-              className="w-full py-2 text-sm font-medium text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition-colors"
-            >
-              Xem lịch sử mua hàng
-            </button>
+              <button 
+                onClick={() => setSelectedCustomerForHistory(customer)}
+                className="w-full py-3 text-sm font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-600 hover:text-white rounded-2xl transition-all duration-300 shadow-sm shadow-indigo-50"
+              >
+                Xem lịch sử mua hàng
+              </button>
+            </div>
           </div>
         ))}
       </div>

@@ -128,8 +128,8 @@ export default function ProductManagement({ products, onAdd, onEdit, onDelete, o
       </div>
 
       <div className="bg-white rounded-2xl border border-zinc-200 shadow-sm overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse min-w-[800px]">
+        <div className="overflow-x-auto w-full">
+          <table className="w-full text-left border-collapse min-w-[700px]">
             <thead>
               <tr className="bg-zinc-50 border-bottom border-zinc-200">
                 <th className="px-6 py-4 text-xs font-semibold text-zinc-500 uppercase tracking-wider">Sản phẩm</th>
@@ -232,15 +232,15 @@ export default function ProductManagement({ products, onAdd, onEdit, onDelete, o
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
           <div className="bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
-            <div className="p-6 border-b border-zinc-100 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-zinc-900">
+            <div className="p-4 sm:p-6 border-b border-zinc-100 flex justify-between items-center">
+              <h2 className="text-lg sm:text-xl font-bold text-zinc-900">
                 {editingProduct ? 'Chỉnh sửa sản phẩm' : 'Thêm sản phẩm mới'}
               </h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-zinc-400 hover:text-zinc-600">
+              <button onClick={() => setIsModalOpen(false)} className="text-zinc-400 hover:text-zinc-600 p-1">
                 <Plus className="rotate-45" size={24} />
               </button>
             </div>
-            <form onSubmit={handleSubmit} className="p-6 space-y-4">
+            <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="sm:col-span-2">
                   <label className="block text-sm font-medium text-zinc-700 mb-1">Tên sản phẩm</label>

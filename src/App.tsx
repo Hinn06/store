@@ -651,7 +651,7 @@ ALTER TABLE app_users DISABLE ROW LEVEL SECURITY;`}
         onLogout={handleLogout} 
         user={user} 
       />
-      <main className="flex-1 p-4 lg:p-8 lg:ml-64 min-h-screen pt-20 lg:pt-8">
+      <main className="flex-1 min-w-0 p-4 lg:p-8 lg:ml-64 min-h-screen pt-20 lg:pt-8">
         <div className="max-w-7xl mx-auto">
           {renderContent()}
         </div>

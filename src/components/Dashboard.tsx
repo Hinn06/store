@@ -77,37 +77,37 @@ export default function Dashboard({ products, orders, customers }: DashboardProp
   const chartData = getChartData();
 
   const stats = [
-    { label: 'Tổng sản phẩm', value: products.length, icon: Package, color: 'bg-indigo-500', trend: '+12%', up: true },
-    { label: 'Tổng đơn hàng', value: orders.length, icon: ShoppingCart, color: 'bg-violet-500', trend: '+5%', up: true },
-    { label: 'Doanh thu', value: formatCurrency(totalRevenue), icon: TrendingUp, color: 'bg-rose-500', trend: '-2%', up: false },
-    { label: 'Lợi nhuận', value: formatCurrency(totalProfit), icon: TrendingUp, color: 'bg-blue-500', trend: '+8%', up: true },
+    { label: 'Tổng sản phẩm', value: products.length, icon: Package, color: 'from-cyan-400 to-blue-500', shadow: 'shadow-cyan-100', trend: '+12%', up: true },
+    { label: 'Tổng đơn hàng', value: orders.length, icon: ShoppingCart, color: 'from-violet-400 to-purple-600', shadow: 'shadow-violet-100', trend: '+5%', up: true },
+    { label: 'Doanh thu', value: formatCurrency(totalRevenue), icon: TrendingUp, color: 'from-rose-400 to-pink-600', shadow: 'shadow-rose-100', trend: '-2%', up: false },
+    { label: 'Lợi nhuận', value: formatCurrency(totalProfit), icon: TrendingUp, color: 'from-emerald-400 to-teal-600', shadow: 'shadow-emerald-100', trend: '+8%', up: true },
   ];
 
   return (
-    <div className="space-y-8">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-2xl lg:text-3xl font-bold text-zinc-900">Tổng quan</h1>
-        <p className="text-sm lg:text-base text-zinc-500">Chào mừng bạn quay trở lại. Đây là tình hình kinh doanh hôm nay.</p>
+    <div className="space-y-6 sm:space-y-8 animate-in fade-in duration-500">
+      <div className="flex flex-col gap-1 sm:gap-2">
+        <h1 className="text-xl sm:text-3xl font-black text-zinc-900 tracking-tight">Tổng quan</h1>
+        <p className="text-xs sm:text-base text-zinc-500 font-medium">Chào mừng bạn quay trở lại. Đây là tình hình kinh doanh hôm nay.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
         {stats.map((stat, idx) => (
-          <div key={idx} className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
-            <div className="flex justify-between items-start mb-4">
-              <div className={cn("p-3 rounded-xl text-white", stat.color)}>
-                <stat.icon size={24} />
+          <div key={idx} className="bg-white p-4 sm:p-6 rounded-2xl border border-zinc-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+            <div className="flex justify-between items-start mb-3 sm:mb-4">
+              <div className={cn("p-2 sm:p-3 rounded-xl text-white bg-gradient-to-br shadow-lg", stat.color, stat.shadow)}>
+                <stat.icon className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
               <div className={cn(
-                "flex items-center gap-1 text-xs font-medium px-2 py-1 rounded-full",
+                "flex items-center gap-0.5 sm:gap-1 text-[8px] sm:text-xs font-black px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full",
                 stat.up ? "bg-emerald-50 text-emerald-600" : "bg-red-50 text-red-600"
               )}>
-                {stat.up ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
+                {stat.up ? <ArrowUpRight size={10} className="sm:w-3.5 sm:h-3.5" /> : <ArrowDownRight size={10} className="sm:w-3.5 sm:h-3.5" />}
                 {stat.trend}
               </div>
             </div>
             <div>
-              <p className="text-sm font-medium text-zinc-500 mb-1">{stat.label}</p>
-              <p className="text-2xl font-bold text-zinc-900">{stat.value}</p>
+              <p className="text-[10px] sm:text-sm font-bold text-zinc-400 uppercase tracking-wider mb-0.5 sm:mb-1">{stat.label}</p>
+              <p className="text-sm sm:text-2xl font-black text-zinc-900 tracking-tight">{stat.value}</p>
             </div>
           </div>
         ))}
@@ -148,16 +148,19 @@ export default function Dashboard({ products, orders, customers }: DashboardProp
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
-          <h2 className="text-lg font-bold text-zinc-900 mb-6">Đơn hàng gần đây</h2>
+        <div className="bg-white p-6 rounded-2xl border border-zinc-100 shadow-sm">
+          <h2 className="text-lg font-bold text-zinc-900 mb-6 flex items-center gap-2">
+            <ShoppingCart size={20} className="text-indigo-600" />
+            Đơn hàng gần đây
+          </h2>
           <div className="space-y-6">
             {orders.slice(0, 5).map((order) => (
-              <div key={order.id} className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-600 font-bold text-xs">
+              <div key={order.id} className="flex items-center gap-4 group cursor-pointer">
+                <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 font-bold text-xs group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
                   {(order.customerName || '?').charAt(0)}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-zinc-900 truncate">{order.customerName}</p>
+                  <p className="text-sm font-bold text-zinc-900 truncate group-hover:text-indigo-600 transition-colors">{order.customerName}</p>
                   <p className="text-xs text-zinc-500">#{order.id} • {new Date(order.createdAt).toLocaleDateString()}</p>
                 </div>
                 <div className="text-sm font-bold text-zinc-900">
@@ -166,34 +169,37 @@ export default function Dashboard({ products, orders, customers }: DashboardProp
               </div>
             ))}
           </div>
-          <button className="w-full mt-8 py-2 text-sm font-medium text-indigo-600 hover:bg-indigo-50 rounded-xl transition-colors">
+          <button className="w-full mt-8 py-3 text-sm font-bold text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all border border-transparent hover:border-indigo-100">
             Xem tất cả đơn hàng
           </button>
         </div>
       </div>
 
       {/* Low Stock Alerts */}
-      <div className="bg-white p-6 rounded-2xl border border-zinc-200 shadow-sm">
+      <div className="bg-white p-6 rounded-2xl border border-zinc-100 shadow-sm">
         <div className="flex items-center gap-2 mb-6">
-          <AlertTriangle className="text-amber-500" size={20} />
+          <div className="p-2 bg-amber-100 rounded-lg">
+            <AlertTriangle className="text-amber-600" size={20} />
+          </div>
           <h2 className="text-lg font-bold text-zinc-900">Cảnh báo tồn kho thấp</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {products.filter(p => p.stock <= 5).map(product => (
-            <div key={product.id} className="flex items-center justify-between p-4 bg-amber-50 border border-amber-100 rounded-xl">
+            <div key={product.id} className="flex items-center justify-between p-4 bg-gradient-to-r from-amber-50 to-white border border-amber-100 rounded-2xl hover:shadow-md transition-all">
               <div>
                 <p className="text-sm font-bold text-zinc-900">{product.name}</p>
-                <p className="text-xs text-zinc-500">{product.category}</p>
+                <p className="text-[10px] text-zinc-500 font-medium uppercase tracking-wider">{product.category}</p>
               </div>
               <div className="text-right">
                 <p className="text-sm font-bold text-amber-600">{product.stock} sản phẩm</p>
-                <p className="text-[10px] text-amber-500 font-medium uppercase tracking-wider">Cần nhập hàng</p>
+                <p className="text-[10px] text-amber-500 font-bold uppercase tracking-wider">Cần nhập hàng</p>
               </div>
             </div>
           ))}
           {products.filter(p => p.stock <= 5).length === 0 && (
-            <div className="col-span-full py-8 text-center text-zinc-400 text-sm">
-              Tất cả sản phẩm đều đủ hàng.
+            <div className="col-span-full py-12 text-center bg-zinc-50 rounded-2xl border border-dashed border-zinc-200">
+              <Package className="mx-auto text-zinc-300 mb-2" size={32} />
+              <p className="text-zinc-400 text-sm font-medium">Tất cả sản phẩm đều đủ hàng.</p>
             </div>
           )}
         </div>

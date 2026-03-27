@@ -242,8 +242,8 @@ export default function OrderManagement({ orders, products, customers, onAddOrde
       </div>
 
       <div className="bg-white rounded-2xl border border-zinc-200 shadow-sm overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse min-w-[900px]">
+        <div className="overflow-x-auto w-full">
+          <table className="w-full text-left border-collapse min-w-[800px]">
             <thead>
               <tr className="bg-zinc-50 border-bottom border-zinc-200">
                 <th className="px-6 py-4 text-xs font-semibold text-zinc-500 uppercase tracking-wider">Mã đơn</th>
@@ -311,18 +311,18 @@ export default function OrderManagement({ orders, products, customers, onAddOrde
 
       {/* Create Order Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-          <div className="bg-white w-full max-w-4xl h-[80vh] rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in duration-200">
-            <div className="p-6 border-b border-zinc-100 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-zinc-900">Tạo đơn hàng mới</h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-zinc-400 hover:text-zinc-600">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/40 backdrop-blur-sm">
+          <div className="bg-white w-full max-w-4xl h-[95vh] sm:h-[80vh] rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in duration-200">
+            <div className="p-4 sm:p-6 border-b border-zinc-100 flex justify-between items-center">
+              <h2 className="text-lg sm:text-xl font-bold text-zinc-900">Tạo đơn hàng mới</h2>
+              <button onClick={() => setIsModalOpen(false)} className="text-zinc-400 hover:text-zinc-600 p-1">
                 <Plus className="rotate-45" size={24} />
               </button>
             </div>
             
             <div className="flex-1 overflow-hidden flex flex-col lg:flex-row">
               {/* Product Selection */}
-              <div className="flex-1 p-4 lg:p-6 overflow-y-auto border-b lg:border-b-0 lg:border-r border-zinc-100">
+              <div className="flex-1 p-4 lg:p-6 overflow-y-auto border-b lg:border-b-0 lg:border-r border-zinc-100 min-h-0">
                 <div className="mb-6">
                   <div className="flex items-center justify-between mb-2">
                     <label className="text-sm font-medium text-zinc-700">Khách hàng</label>
@@ -405,12 +405,12 @@ export default function OrderManagement({ orders, products, customers, onAddOrde
               </div>
 
               {/* Order Summary */}
-              <div className="w-full lg:w-80 bg-zinc-50 p-6 flex flex-col">
+              <div className="w-full lg:w-80 bg-zinc-50 p-4 sm:p-6 flex flex-col h-1/2 lg:h-full">
                 <h3 className="text-sm font-bold text-zinc-900 mb-4 flex items-center gap-2">
                   <ShoppingCart size={18} />
                   Chi tiết đơn hàng
                 </h3>
-                <div className="flex-1 overflow-y-auto space-y-4 mb-6">
+                <div className="flex-1 overflow-y-auto space-y-4 mb-4 sm:mb-6">
                   {newOrderItems.map(item => {
                     const product = products.find(p => p.id === item.productId)!;
                     return (
@@ -475,16 +475,16 @@ export default function OrderManagement({ orders, products, customers, onAddOrde
       {selectedOrder && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
           <div className="bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
-            <div className="p-6 border-b border-zinc-100 flex justify-between items-center">
+            <div className="p-4 sm:p-6 border-b border-zinc-100 flex justify-between items-center">
               <div>
-                <h2 className="text-xl font-bold text-zinc-900">Chi tiết đơn hàng</h2>
-                <p className="text-xs text-zinc-500">Mã đơn: #{selectedOrder.id}</p>
+                <h2 className="text-lg sm:text-xl font-bold text-zinc-900">Chi tiết đơn hàng</h2>
+                <p className="text-[10px] sm:text-xs text-zinc-500">Mã đơn: #{selectedOrder.id}</p>
               </div>
-              <button onClick={() => setSelectedOrder(null)} className="text-zinc-400 hover:text-zinc-600">
+              <button onClick={() => setSelectedOrder(null)} className="text-zinc-400 hover:text-zinc-600 p-1">
                 <Plus className="rotate-45" size={24} />
               </button>
             </div>
-            <div className="p-6 space-y-6">
+            <div className="p-4 sm:p-6 space-y-6">
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-xs text-zinc-400 uppercase font-semibold">Khách hàng</p>

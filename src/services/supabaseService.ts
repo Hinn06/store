@@ -261,18 +261,25 @@ export const supabaseService = {
 
     return { success: true };
   },
-  async updateUserProfile(userId: string, data: { name: string, phone?: string, email?: string }) {
-    const { error } = await getSupabase()
+  async updateUserProfile(userId: string, data: { name: string, phone?: string, email?: string, password?: string }) {
+    const updateData: any = { 
+      name: data.name, 
+      phone: data.phone || null, 
+      email: data.email || null 
+    };
+    if (data.password) {
+      updateData.password = data.password;
+    }
+
+    const { data: updatedData, error } = await getSupabase()
       .from('app_users')
-      .update({ 
-        name: data.name, 
-        phone: data.phone || null, 
-        email: data.email || null 
-      })
-      .eq('id', userId);
+      .update(updateData)
+      .eq('id', userId)
+      .select()
+      .single();
     
     if (error) throw error;
-    return { success: true };
+    return updatedData as User;
   },
   async changePassword(userId: string, oldPassword: string, newPassword: string) {
     // 1. Verify old password
